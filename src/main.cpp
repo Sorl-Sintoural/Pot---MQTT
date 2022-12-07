@@ -1,6 +1,6 @@
 #include <Project2_variables.h>
 
-bool IS_RIGHT_SIDE = true;   //* true = jambe droite, false = jambe gauche 
+bool IS_RIGHT_SIDE = true; //* true = jambe droite, false = jambe gauche
 
 // ----------------------------- Connecting to WIFI
 String translateEncryptionType(wifi_auth_mode_t encryptionType)
@@ -156,12 +156,12 @@ void reconnectMQTT()
 void conversion_Right()
 {
   adcA2 = analogRead(A2);
-  angleA2 = (((adcA2 * 170) / 4095.0) - 85) + osr_hip; 
-  if(angleA2 > 80)
+  angleA2 = (((adcA2 * 170) / 4095.0) - 85) + osr_hip;
+  if (angleA2 > 80)
   {
     angleA2 = 80;
   }
-  else if(angleA2 < -79)
+  else if (angleA2 < -79)
   {
     angleA2 = -80;
   }
@@ -172,11 +172,11 @@ void conversion_Right()
 
   adcA3 = analogRead(A3);
   angleA3 = (((adcA3 * 170) / 4095.0) - 85) + osr_knee;
-  if(angleA3 > 80)
+  if (angleA3 > 80)
   {
     angleA3 = 80;
   }
-  else if(angleA3 < -79)
+  else if (angleA3 < -79)
   {
     angleA3 = -80;
   }
@@ -187,11 +187,11 @@ void conversion_Right()
 
   adcA4 = analogRead(A4);
   angleA4 = (((adcA4 * 170) / 4095.0) - 85) + osr_ankle;
-  if(angleA4 > 80)
+  if (angleA4 > 80)
   {
     angleA4 = 80;
   }
-  else if(angleA4 < -77)
+  else if (angleA4 < -77)
   {
     angleA4 = -80;
   }
@@ -204,12 +204,12 @@ void conversion_Right()
 void conversion_Left()
 {
   adcA2 = analogRead(A2);
-  angleA2 = (((adcA2 * 170) / 4095.0) - 85) + osl_hip; 
-  if(angleA2 > 80)
+  angleA2 = (((adcA2 * 170) / 4095.0) - 85) + osl_hip;
+  if (angleA2 > 80)
   {
     angleA2 = 80;
   }
-  else if(angleA2 < -79)
+  else if (angleA2 < -79)
   {
     angleA2 = -80;
   }
@@ -220,11 +220,11 @@ void conversion_Left()
 
   adcA3 = analogRead(A3);
   angleA3 = (((adcA3 * 170) / 4095.0) - 85) + osl_knee;
-  if(angleA3 > 80)
+  if (angleA3 > 80)
   {
     angleA3 = 80;
   }
-  else if(angleA3 < -79)
+  else if (angleA3 < -79)
   {
     angleA3 = -80;
   }
@@ -235,11 +235,11 @@ void conversion_Left()
 
   adcA4 = analogRead(A4);
   angleA4 = (((adcA4 * 170) / 4095.0) - 85) + osl_ankle;
-  if(angleA4 > 80)
+  if (angleA4 > 80)
   {
     angleA4 = 80;
   }
-  else if(angleA4 < -77)
+  else if (angleA4 < -77)
   {
     angleA4 = -80;
   }
@@ -342,9 +342,12 @@ void loop()
   if (millis() - lastMsg > 100)
   {
     lastMsg = millis();
-    if (IS_RIGHT_SIDE){
+    if (IS_RIGHT_SIDE)
+    {
       conversion_Right();
-    }else{
+    }
+    else
+    {
       conversion_Left();
     }
     publish();
